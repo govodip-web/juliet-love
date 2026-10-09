@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="theme-color" content="#fff1f5" />
+  <title>A Little Hug for Juliet 💗</title>
+  <style>
+    :root { --pink:#e75480; --deep:#963d61; --ink:#5d3347; --paper:#fffafd; }
+    * { box-sizing:border-box; }
+    body {
+      margin:0; min-height:100svh; overflow-x:hidden; color:var(--ink);
+      font-family: ui-rounded, "Trebuchet MS", system-ui, sans-serif;
+      background: radial-gradient(circle at 15% 15%, #ffe0eb 0, transparent 35%),
+                  radial-gradient(circle at 85% 85%, #f8dff1 0, transparent 38%),
+                  linear-gradient(135deg,#fff8fb,#fff0f5);
+      display:flex; align-items:center; justify-content:center; padding:24px 14px;
+    }
+    .hearts { position:fixed; inset:0; pointer-events:none; overflow:hidden; z-index:0; }
+    .heart { position:absolute; bottom:-50px; opacity:0; animation: floatUp linear infinite; filter:drop-shadow(0 3px 4px #d96a8b22); }
+    @keyframes floatUp { 0% { transform:translateY(0) rotate(0deg); opacity:0; } 12% {opacity:.7;} 85% {opacity:.65;} 100% {transform:translateY(-115vh) rotate(22deg);opacity:0;} }
+    .card { position:relative; z-index:1; width:min(100%,470px); padding:clamp(24px,6vw,38px); text-align:center; border:1px solid #ffffffd9; border-radius:30px; background:#ffffffd9; box-shadow:0 22px 70px #b9577920; backdrop-filter:blur(10px); }
+    .badge { display:inline-flex; gap:7px; align-items:center; border:1px solid #f7d0df; background:#fff4f8; color:#ad4d70; border-radius:99px; padding:8px 13px; font-size:.78rem; letter-spacing:.03em; }
+    .bouquet { font-size:clamp(3.3rem,15vw,5.2rem); margin:15px 0 5px; animation: bob 3s ease-in-out infinite; }
+    @keyframes bob { 0%,100% {transform:translateY(0) rotate(-2deg)} 50% {transform:translateY(-7px) rotate(2deg)} }
+    h1 { margin:8px 0 12px; color:var(--deep); font-size:clamp(2rem,8vw,2.65rem); line-height:1.1; letter-spacing:-.04em; }
+    .intro { font-size:1.03rem; line-height:1.75; margin:0 auto; max-width:35ch; }
+    .divider { display:flex; align-items:center; gap:12px; margin:23px 0; color:#d985a2; }
+    .divider::before,.divider::after { content:""; height:1px; flex:1; background:#f3d5e0; }
+    .gentle-note { background:#fff4f8; border:1px solid #f9e0e9; border-radius:19px; padding:16px; line-height:1.7; font-size:.96rem; }
+    button { font:inherit; cursor:pointer; border:0; border-radius:15px; padding:14px 18px; width:100%; font-weight:750; transition:transform .18s, box-shadow .18s; }
+    button:active { transform:scale(.98); }
+    .primary { margin-top:20px; color:white; background:linear-gradient(135deg,#ec6a94,#d94379); box-shadow:0 9px 20px #df5a872d; }
+    .primary:hover { box-shadow:0 12px 26px #df5a8740; transform:translateY(-1px); }
+    .surprise { display:none; margin-top:16px; padding:18px; text-align:left; line-height:1.8; border-radius:18px; border:1px solid #f4cddd; background:linear-gradient(135deg,#fff5f8,#fffafd); animation: appear .45s ease both; }
+    .surprise.show { display:block; }
+    @keyframes appear { from { opacity:0; transform:translateY(8px) scale(.99) } to { opacity:1; transform:translateY(0) scale(1) } }
+    .surprise strong { color:#b53f6a; }
+    .choices { display:grid; grid-template-columns:1fr 1fr; gap:10px; margin-top:15px; }
+    .soft-button { color:#a64a6d; background:#fff; border:1px solid #f3d2df; font-size:.9rem; padding:12px 9px; }
+    .reply { display:none; margin-top:12px; font-size:.92rem; line-height:1.6; color:#8c4663; background:#fff5f8; border-radius:14px; padding:12px; }
+    .reply.show { display:block; animation:appear .3s ease both; }
+    .footer { margin:22px 0 0; color:#b77a92; font-size:.8rem; }
+    .spark { display:inline-block; animation: twinkle 1.8s ease-in-out infinite; }
+    @keyframes twinkle { 50% {transform:scale(1.2); opacity:.65} }
+    @media (prefers-reduced-motion: reduce) { *,*::before,*::after { animation-duration:.01ms !important; animation-iteration-count:1 !important; scroll-behavior:auto !important; } }
+  </style>
+</head>
+<body>
+  <div class="hearts" id="hearts" aria-hidden="true"></div>
+  <main class="card">
+    <div class="badge"><span class="spark">✦</span> A LITTLE NOTE JUST FOR YOU <span class="spark">✦</span></div>
+    <div class="bouquet" aria-hidden="true">💐</div>
+    <h1>Hey, Juliet <span aria-hidden="true">💗</span></h1>
+    <p class="intro">I don't know exactly how you're feeling right now, but I wanted to leave a little love here for you.</p>
+    <div class="divider" aria-hidden="true">♡</div>
+    <div class="gentle-note">You don't have to force a smile, explain everything, or pretend you're okay. Take things one moment at a time, beautiful. I hope you remember that you matter so much, and you deserve gentleness today. 🫂</div>
+    <button class="primary" id="surpriseBtn" aria-expanded="false" aria-controls="surprise">Tap for a little surprise 💌</button>
+    <section class="surprise" id="surprise" aria-live="polite">
+      <strong>My Juliet, ❤️</strong><br>
+      If I could, I'd be right beside you, holding your hand and giving you the warmest hug. Until then, please imagine one from me. You don't have to fix your whole day at once. Rest if you need to, talk if you want to, or just be quiet — I'll still care about you all the same. You are precious to me, and I'm sending you all my love. 💕
+      <p style="text-align:center;margin:14px 0 0;font-size:1.4rem">🫂 💗 🌷</p>
+    </section>
+    <p style="margin:21px 0 0;font-weight:700;color:#a84c70">What would feel nicest right now, Juliet?</p>
+    <div class="choices">
+      <button class="soft-button" data-reply="A big, warm virtual hug is on its way. Close your eyes for a second and imagine me squeezing you gently. 🫂💗">A hug, please 🫂</button>
+      <button class="soft-button" data-reply="I'm here to listen, without judging or rushing you. You can tell me as much or as little as you want. 💕">Someone to listen 💌</button>
+      <button class="soft-button" data-reply="Then take your time, sweetheart. No pressure to reply or be cheerful. Sending you a little pocket of peace. 🌷">Some quiet time 🌷</button>
+      <button class="soft-button" data-reply="Mission accepted: one tiny smile coming your way! 😊 You deserve a softer moment today. 💗">A little smile 😊</button>
+    </div>
+    <div class="reply" id="reply" aria-live="polite"></div>
+    <p class="footer">Made with love, just for you, Juliet <span aria-hidden="true">♥</span></p>
+  </main>
+  <script>
+    const hearts = document.getElementById('hearts');
+    const symbols = ['♡','♥','💕','💗','✿'];
+    for (let i = 0; i < 20; i++) {
+      const el = document.createElement('span');
+      el.className = 'heart';
+      el.textContent = symbols[Math.floor(Math.random() * symbols.length)];
+      el.style.left = Math.random() * 100 + '%';
+      el.style.animationDuration = (9 + Math.random() * 10) + 's';
+      el.style.animationDelay = (-Math.random() * 18) + 's';
+      el.style.fontSize = (14 + Math.random() * 20) + 'px';
+      hearts.appendChild(el);
+    }
+    const surpriseBtn = document.getElementById('surpriseBtn');
+    const surprise = document.getElementById('surprise');
+    surpriseBtn.addEventListener('click', () => {
+      const opened = surprise.classList.toggle('show');
+      surpriseBtn.textContent = opened ? 'A little more love 💗' : 'Tap for a little surprise 💌';
+      surpriseBtn.setAttribute('aria-expanded', String(opened));
+      if (opened) surprise.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+    });
+    const reply = document.getElementById('reply');
+    document.querySelectorAll('[data-reply]').forEach(button => {
+      button.addEventListener('click', () => {
+        reply.textContent = button.dataset.reply;
+        reply.classList.add('show');
+      });
+    });
+  </script>
+</body>
+</html>
